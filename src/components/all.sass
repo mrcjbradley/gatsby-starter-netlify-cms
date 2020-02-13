@@ -9,10 +9,11 @@ $primary: $kaldi-red
 $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
-
+.navbar
+  flex-direction: column
 .navbar .navbar-menu
   box-shadow: none !important
-  padding-top: 3rem
+  // padding-top: 3rem
   justify-content: center
 
 .navbar-start
@@ -99,15 +100,11 @@ $menu-list-border-left: 1px solid $kaldi-red-invert
 $menu-label-color: $white-ter
 
 .logo.navbar-item
-  position: absolute
+  // position: absolute
   justify-content: center
   width: 100%
-  top: 0
-  min-height: 3rem
-  &::after
-    content: ''
-    height: 0px
-    display: block
+  & img
+    max-height: fit-content
 .menu-label
   font-size: 1em !important
   text-align: left
