@@ -8,10 +8,13 @@ const Navbar = class extends React.Component {
     super(props);
     this.state = {
       active: false,
-      navBarActiveClass: ""
+      navBarActiveClass: "",
+      currentPage: ""
     };
   }
-
+  // setCurrentPage = page => {
+  //   return () => console.log(document.location.pathname);
+  // };
   toggleHamburger = () => {
     // toggle the active boolean in the state
     this.setState(
@@ -32,6 +35,10 @@ const Navbar = class extends React.Component {
     );
   };
 
+  componentDidMount() {
+    console.log(document.location.pathname);
+  }
+
   render() {
     return (
       <nav
@@ -39,11 +46,11 @@ const Navbar = class extends React.Component {
         role="navigation"
         aria-label="main-navigation"
       >
+        <Link to="/" className="navbar-item logo" title="Logo">
+          <img src={logo} alt="Kaldi" style={{ width: "88px" }} />
+        </Link>
         <div className="container">
           <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Kaldi" style={{ width: "88px" }} />
-            </Link>
             {/* Hamburger menu */}
             <div
               className={`navbar-burger burger ${this.state.navBarActiveClass}`}
@@ -60,7 +67,18 @@ const Navbar = class extends React.Component {
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
             <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/about">
+              <Link
+                className="navbar-item"
+                to="/"
+                onClick={this.setCurrentPage("")}
+              >
+                Home
+              </Link>
+              <Link
+                className="navbar-item"
+                to="/about"
+                onClick={this.setCurrentPage("about")}
+              >
                 About
               </Link>
               <Link className="navbar-item" to="/products">
@@ -72,22 +90,7 @@ const Navbar = class extends React.Component {
               <Link className="navbar-item" to="/contact">
                 Contact
               </Link>
-              {/* <Link className="navbar-item" to="/contact/examples">
-                Form Examples
-              </Link> */}
             </div>
-            {/* <div className="navbar-end has-text-centered">
-              <a
-                className="navbar-item"
-                href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <img src={github} alt="Github" />
-                </span>
-              </a>
-            </div> */}
           </div>
         </div>
       </nav>
